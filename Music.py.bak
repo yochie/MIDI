@@ -10,7 +10,7 @@ Octave_0      = 0
 Octave_Middle = 4
 Octave_7      = 7
 
-pitchClasses = range(12)
+pitchClasses = xrange(12)
 
 PitchClass_C          =  0
 PitchClass_Csharp     =  1
@@ -54,7 +54,7 @@ dissonant         = 0
 consonant         = 1
 perfectConsonance = 2
 unison            = 3
-classicalConsonances = range(dissonant,unison+1)
+classicalConsonances = xrange(dissonant,unison+1)
 
 def intervalClassicalConsonance( note1, note2 ):
     interval = abs(note2 - note1) % 12

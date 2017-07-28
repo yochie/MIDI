@@ -8,7 +8,7 @@ assert(noteFromOctaveAndPitchClass(0, PitchClass_C) == Note_C0)
 assert(noteFromOctaveAndPitchClass(4, PitchClass_C) == Note_MiddleC)
 assert(noteFromOctaveAndPitchClass(7, PitchClass_C) == Note_C7)
 
-for oct in range(-2,8):
+for oct in xrange(-2,8):
     for pc in pitchClasses:
         note = noteFromOctaveAndPitchClass(oct, pc)
         assert(pitchClass(note) == pc)
@@ -20,8 +20,8 @@ for pc1 in pitchClasses:
         assert(consonance in classicalConsonances)
 
         # Consonance is the same in all octaves
-        for oct1 in range(0,7):
-            for oct2 in range(0,7):
+        for oct1 in xrange(0,7):
+            for oct2 in xrange(0,7):
                 n1 = noteFromOctaveAndPitchClass(oct1,pc1)
                 n2 = noteFromOctaveAndPitchClass(oct2,pc2)
                 assert(consonance == intervalClassicalConsonance(n1,n2))

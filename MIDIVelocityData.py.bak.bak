@@ -3,7 +3,7 @@ import numpy
 
 from MIDOBUGFIX import merge_tracksFIXED
 
-MIDINotes = range(128)
+MIDINotes = xrange(128)
 _reasonableNumberOfTicksForaFile = 2**18  # 1365 bars of 4/4
 
 # A local persistant array to avoid re-allocating giant arrays all the time.
@@ -61,8 +61,8 @@ def LoadVelocityDatafromMIDIFile(fileName):
 
     #TODO: pythonize this loop
     newData = numpy.empty((lastTick+24,len(MIDINotes)), numpy.int8)
-    for i in range(lastTick):
-        for j in range(_velocityData.shape[1]-1):
+    for i in xrange(lastTick):
+        for j in xrange(_velocityData.shape[1]-1):
             newData[i,j] = _velocityData[i,j]
 
     # reset the globals to their initial state
@@ -110,7 +110,7 @@ def _addEvent(tick, note, velocity):
 
         # NORMAL CASE: If the note is currently on, fill all the space up to this tick
         if currentVelocity > 0:
-            for t in range(lastEventTime+1, tick):
+            for t in xrange(lastEventTime+1, tick):
                 _velocityData[t, note] = currentVelocity
 
         # Another special case: if we're re-attacking a note that's already on, add a one-tick gap, to force the
@@ -126,17 +126,17 @@ def _checkDataLength(newLength):
     global _velocityData
     if newLength >= _velocityData.shape[0]:
         print("Warning: _reasonableNumberOfTicksForaFile isn't.")
-        print(("New length: {0} Old length:{1}".format(newLength, velocityData.shape[0])))
+        print("New length: {0} Old length:{1}".format(newLength, velocityData.shape[0]))
 
         newData = numpy.empty((newLength + 1024,128), numpy.int8)
 
         #TODO: pythonize this loop
-        for i in range(_velocityData.shape[0]-1):
-            for j in range(_velocityData.shape[1]-1):
+        for i in xrange(_velocityData.shape[0]-1):
+            for j in xrange(_velocityData.shape[1]-1):
                 newData[i,j] = _velocityData[i,j]
 
         _velocityData = newData
-        print(("Updated length: {}".format(_velocityData.shape[0])))
+        print("Updated length: {}".format(_velocityData.shape[0]))
 
 
 
